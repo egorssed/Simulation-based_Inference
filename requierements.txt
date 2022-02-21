@@ -1,0 +1,10 @@
+numpy
+scipy
+jax
+jaxlib
+matplotlib
+tensorflow
+sbi
+numpyro
+corner
+# installation instructions for Mac M1, python  3.9 are in the folder 'environment'
