@@ -1,0 +1,13 @@
+
+1. Some description of all the possible Profiles would be quite handy. Because I had to search for it in the lenstronomy github
+https://github.com/sibirrer/lenstronomy/blob/cb4894d2ea1e61fcd5585ae8b618ffdf79c6ea61/lenstronomy/LensModel/profile_list_base.py#L22
+
+2. Readthedocs and some observable scheme (draw.io ?) of yaml file structure would be nice to have.
+Such that I can explore all the possible models/arguments/distributions. There is this gh-pages 'guide',
+https://deepskies.github.io/deeplenstronomy/Notebooks/ ,but it is more like a reference implementation, rather than something
+that you can use on daily basis just to look up some stuff
+
+3. PEMD MASS profile doesn't work. After calling dl.make_dataset(...) jupyter kernel immediately dies.
+My configuration: Mac M1, py 3.9, fortran (https://github.com/fxcoudert/gfortran-for-macOS/releases/tag/11-arm-alpha2)
+
+
