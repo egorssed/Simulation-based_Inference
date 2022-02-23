@@ -11,6 +11,18 @@ https://deepskies.github.io/deeplenstronomy/Notebooks/ ,but it is more like a re
 that you can use on daily basis just to look up some stuff
 
 3. PEMD MASS profile doesn't work. After calling dl.make_dataset(...) jupyter kernel immediately dies.
-My configuration: Mac M1, py 3.9, fortran (https://github.com/fxcoudert/gfortran-for-macOS/releases/tag/11-arm-alpha2)
+My configuration: Mac M1,, py 3.9, fortran (https://github.com/fxcoudert/gfortran-for-macOS/releases/tag/11-arm-alpha2)
 
+4. If you set a parameter (e.g. CONFIGURATION_1-PLANE_2-OBJECT_1-LIGHT_PROFILE_1-center_x-g) with custom distribution,
+ then it is worth writing 'center_x:None' in 'Species' instead of random number, so it is obvious that the parameter will be reset.
+ Also it is worth adding to the guide (https://deepskies.github.io/deeplenstronomy/Notebooks/UserDistributions.html) that if you use the custom distributions
+ the script takes every parameter from the text file and doesn't account for the ones in the 'Species'
 
+ 5. Might be worth to add Generalized Normal distribution since it is somewhat softened uniform, so can be useful (e.g.https://arxiv.org/pdf/2010.13787.pdf)
+ Also Gamma and Beta distributions can be useful since those are conjugate priors to our usual Poisson-based and Normal-based.
+
+6. Typo def euclid(): ... survey='des' ... on this page https://deepskies.github.io/deeplenstronomy/docs/surveys.html
+
+7. If you sample redshifts sometimes source is closer than the deflector (tails of distributions). It would be if the function dl.make_dataset
+don't throw error and die, but allow some functionality to handle the case (e.g. ignore this lens and resample it).
+I had to put it into loop while ...: try: dl.make_dataset ... except: ...

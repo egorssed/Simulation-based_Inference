@@ -1,0 +1,235 @@
+# Priors on parameters from Park et al. 2021 Table 1 (https://arxiv.org/abs/2012.00042)
+# Priors on ellipticities from Wagner-Carena 2021 Table 3 (https://arxiv.org/pdf/2010.13787.pdf)
+# Exposure time from https://arxiv.org/pdf/1711.00072.pdf
+# Sky birghtness for F814W from https://www.stsci.edu/instruments/wfpc2/Wfpc2_hand_current/ch6_exposuretime5.html
+# Magnitude zero point from https://www.stsci.edu/hst/wfpc2/Wfpc2_dhb/wfpc2_ch52.html#1933986 or from https://ned.ipac.caltech.edu/level5/March02/Windhorst/Wind2_3.html
+# HST parameters from survey='hst'
+
+DATASET:
+    NAME: Park2021
+    PARAMETERS:
+        SIZE: 101
+        OUTDIR: Park2021
+
+
+## Next we'll specify the COSMOLOGY to use, I'll keep it simple a just use basic values
+
+COSMOLOGY:
+    PARAMETERS:
+        H0: 70
+        Om0: 0.3
+
+IMAGE:
+    PARAMETERS:
+        exposure_time: 420.
+        numPix: 50
+        pixel_scale: 0.08
+        psf_type: 'GAUSSIAN'
+        read_noise: 4
+        ccd_gain: 2.5
+SURVEY:
+    PARAMETERS:
+        BANDS: F814W
+        seeing: 0.08
+        magnitude_zero_point: 21.659
+        sky_brightness: 22.9
+        num_exposures: 1
+
+SPECIES:
+    GALAXY_1:
+        NAME: LENS
+        LIGHT_PROFILE_1:
+            NAME: SERSIC_ELLIPSE
+            PARAMETERS:
+                magnitude:
+                    DISTRIBUTION:
+                        NAME: uniform
+                        PARAMETERS:
+                            minimum: 19
+                            maximum: 17
+                center_x: 
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.07
+                center_y: 
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.07
+                R_sersic:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.8
+                            std: 0.15
+                n_sersic:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 3.
+                            std: 0.55
+                e1:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.2
+                e2:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.2
+
+
+        MASS_PROFILE_1:
+            NAME: PEMD
+            PARAMETERS:
+                theta_E:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 1.1
+                            std: 0.1
+                gamma:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 2.0
+                            std: 0.1
+                e1:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.2
+                e2:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.2
+                center_x:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.07
+                center_y:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.07
+        SHEAR_PROFILE_1:
+            NAME: SHEAR_GAMMA_PSI
+            PARAMETERS:
+                gamma_ext:
+                    DISTRIBUTION:
+                        NAME: uniform
+                        PARAMETERS:
+                            minimum: 0.
+                            maximum: 0.05
+                psi_ext:
+                    DISTRIBUTION:
+                        NAME: uniform
+                        PARAMETERS:
+                            minimum: -3.14159/2
+                            maximum: 3.14159/2
+    GALAXY_2:
+        NAME: SOURCE
+        LIGHT_PROFILE_1:
+            NAME: SERSIC_ELLIPSE
+            PARAMETERS:
+                magnitude:
+                    DISTRIBUTION:
+                        NAME: uniform
+                        PARAMETERS:
+                            minimum: 25
+                            maximum: 20
+                center_x:
+                    DISTRIBUTION:
+                        NAME: uniform
+                        PARAMETERS:
+                            minimum: -0.2
+                            maximum: 0.2
+                center_y:
+                    DISTRIBUTION:
+                        NAME: uniform
+                        PARAMETERS:
+                            minimum: -0.2
+                            maximum: 0.2
+                R_sersic:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.35
+                            std: 0.05
+                n_sersic:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 3.
+                            std: 0.5
+                e1:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.2
+                e2:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.
+                            std: 0.2
+
+        MASS_PROFILE_1:
+            NAME: SIE
+            PARAMETERS:
+                theta_E: 2.0
+                e1: 0.1
+                e2: -0.1
+                center_x: 0.0
+                center_y: 0.0
+    NOISE_1:
+        NAME: POISSON_NOISE
+        PARAMETERS:
+            mean: 0.0
+
+# DISTRIBUTIONS:
+#     USERDIST_1:
+#         FILENAME: data/seeing.txt
+#         MODE: interpolate
+#         STEP: 20
+#     USERDIST_2:
+#         FILENAME: data/Rsersic_magnitude.txt
+#         MODE: sample
+
+
+GEOMETRY:
+    CONFIGURATION_1:
+        NAME: GALAXY_AGN
+        FRACTION: 1
+        PLANE_1:
+            OBJECT_1: LENS
+            PARAMETERS:
+                REDSHIFT:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 0.5
+                            std: 0.2
+        PLANE_2:
+            OBJECT_1: SOURCE
+            PARAMETERS:
+                REDSHIFT:
+                    DISTRIBUTION:
+                        NAME: normal
+                        PARAMETERS:
+                            mean: 2.
+                            std: 0.4
+        NOISE_SOURCE_1: POISSON_NOISE
