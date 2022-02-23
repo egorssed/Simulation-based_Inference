@@ -1,7 +1,7 @@
 DATASET:
     NAME: SBI_dataset # set a name, this value is only used if you request the h5 file format
     PARAMETERS:
-        SIZE: 101 # number of images in the full datase.
+        SIZE: 10000 # number of images in the full datase.
         OUTDIR: SBI_dataset # will be created on your system if your request to save images
 
 ## Next we'll specify the COSMOLOGY to use, I'll keep it simple a just use basic values
@@ -11,12 +11,11 @@ COSMOLOGY:
         H0: 70
         Om0: 0.3
 
-
 IMAGE:
     PARAMETERS:
-        exposure_time: 10000
-        numPix: 100
-        pixel_scale: 0.1
+        exposure_time: 300
+        numPix: 32
+        pixel_scale: 0.263
         psf_type: 'GAUSSIAN'
         read_noise: 0 #7
         ccd_gain: 6.083
@@ -24,11 +23,10 @@ IMAGE:
 SURVEY:
     PARAMETERS:
         BANDS: g
-        seeing: 0.3
+        seeing: 0.9
         magnitude_zero_point: 30.0
-        sky_brightness: 0 #23.5
+        sky_brightness: 30 #23.5
         num_exposures: 10
-
 
 SPECIES:
     GALAXY_1:
@@ -45,7 +43,7 @@ SPECIES:
                 e2: 0.5 
 
         MASS_PROFILE_1:
-            NAME: SIE
+            NAME: PEMD
             PARAMETERS:
                 theta_E:
                     DISTRIBUTION:
@@ -77,6 +75,12 @@ SPECIES:
                         PARAMETERS:
                             minimum: -2
                             maximum: 2
+                gamma: 
+                    DISTRIBUTION:
+                        NAME: uniform
+                        PARAMETERS:
+                            minimum: 1.9
+                            maximum: 2.1
         SHEAR_PROFILE_1:
             NAME: SHEAR
             PARAMETERS:

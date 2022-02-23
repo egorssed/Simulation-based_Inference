@@ -1,5 +1,8 @@
 
-1. Some description of all the possible Profiles would be quite handy. Because I had to search for it in the lenstronomy github
+1. It's nice that you have 'docs' page (https://deepskies.github.io/deeplenstronomy/docs/index.html),
+but it would be also cool to have a list of all the names of models/distributions as they should be used in .yaml file
+e.g. for 'SHEAR_GAMMA_PSI' for lenstronomy.LensModel.Profiles.shear.ShearGammaPsi(...),
+so I don't need to search for it in the lenstronomy github:
 https://github.com/sibirrer/lenstronomy/blob/cb4894d2ea1e61fcd5585ae8b618ffdf79c6ea61/lenstronomy/LensModel/profile_list_base.py#L22
 
 2. Readthedocs and some observable scheme (draw.io ?) of yaml file structure would be nice to have.
