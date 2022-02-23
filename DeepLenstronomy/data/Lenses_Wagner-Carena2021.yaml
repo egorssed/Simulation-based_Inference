@@ -1,11 +1,11 @@
-# Priors on parameters from the article Park et al. 2021 Table 1 (Partially)
-# https://arxiv.org/abs/2012.00042
+# Priors on parameters from Wagner-Carena 2021 Table 3 (https://arxiv.org/pdf/2010.13787.pdf)
+# Priors on redshifts from Park et al. 2021 Table 1 (https://arxiv.org/abs/2012.00042)
 
 DATASET:
-    NAME: HST_SLACS_Park2021
+    NAME: WC2021
     PARAMETERS:
-        SIZE: 1
-        OUTDIR: HST_SLACS_Park2021
+        SIZE: 101
+        OUTDIR: WC2021
 
 
 ## Next we'll specify the COSMOLOGY to use, I'll keep it simple a just use basic values
@@ -20,7 +20,7 @@ IMAGE:
     PARAMETERS:
         exposure_time: 10000
         numPix: 100
-        pixel_scale: 0.263
+        pixel_scale: 0.05
         psf_type: 'GAUSSIAN'
         read_noise: 0 #7
         ccd_gain: 6.083
@@ -28,7 +28,7 @@ IMAGE:
 SURVEY:
     PARAMETERS:
         BANDS: g
-        seeing: 0.9
+        seeing: 0.3
         magnitude_zero_point: 30.0
         sky_brightness: 0 #23.5
         num_exposures: 10
@@ -56,13 +56,13 @@ SPECIES:
                         NAME: lognormal
                         PARAMETERS:
                             mean: 0.
-                            std: 0.1
+                            sigma: 0.1
                 gamma:
                     DISTRIBUTION:
                         NAME: lognormal
                         PARAMETERS:
                             mean: 0.7
-                            std: 0.1
+                            sigma: 0.1
                 e1:
                     DISTRIBUTION:
                         NAME: normal
@@ -95,7 +95,7 @@ SPECIES:
                         NAME: lognormal
                         PARAMETERS:
                             mean: -2.73
-                            std: 1.05
+                            sigma: 1.05
                 psi_ext:
                     DISTRIBUTION:
                         NAME: uniform
@@ -120,13 +120,13 @@ SPECIES:
                         NAME: lognormal
                         PARAMETERS:
                             mean: -0.7
-                            std: 0.4
+                            sigma: 0.4
                 n_sersic:
                     DISTRIBUTION:
                         NAME: lognormal
                         PARAMETERS:
                             mean: 0.7
-                            std: 0.4
+                            sigma: 0.4
                 e1:
                     DISTRIBUTION:
                         NAME: normal
@@ -153,16 +153,15 @@ SPECIES:
         PARAMETERS:
             mean: 0.0
 
- DISTRIBUTIONS:
-     USERDIST_1:
-         FILENAME: data/GenNorm_src_x.txt
-         MODE: interpolate
-         STEP: 20
-     USERDIST_2:
-         FILENAME: data/GenNorm_src_y.txt
-         MODE: interpolate
-         STEP: 20
-
+DISTRIBUTIONS:
+    USERDIST_1:
+        FILENAME: drive/MyDrive/Fermilab/Data/Config_files/GenNorm_src_x.txt
+        MODE: interpolate
+        STEP: 20
+    USERDIST_2:
+        FILENAME: drive/MyDrive/Fermilab/Data/Config_files/GenNorm_src_y.txt
+        MODE: interpolate
+        STEP: 20
 
 GEOMETRY:
     CONFIGURATION_1:

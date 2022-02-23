@@ -1,5 +1,5 @@
-# Priors on parameters from the article Park et al. 2021 Table 1 (Partially)
-# https://arxiv.org/abs/2012.00042
+# Priors on parameters from Park et al. 2021 Table 1 (https://arxiv.org/abs/2012.00042)
+# Priors on ellipticities from Wagner-Carena 2021 Table 3 (https://arxiv.org/pdf/2010.13787.pdf)
 
 DATASET:
     NAME: Park2021
