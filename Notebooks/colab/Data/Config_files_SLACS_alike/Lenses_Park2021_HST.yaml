@@ -22,7 +22,7 @@ COSMOLOGY:
 IMAGE:
     PARAMETERS:
         exposure_time: 420. 
-        numPix: 50
+        numPix: 64
         pixel_scale: 0.08
         psf_type: 'GAUSSIAN'
         read_noise: 4
@@ -47,13 +47,13 @@ SPECIES:
                         PARAMETERS:
                             minimum: 19
                             maximum: 17
-                center_x: 
+                center_x:
                     DISTRIBUTION:
                         NAME: normal
                         PARAMETERS:
                             mean: 0.
                             std: 0.07
-                center_y: 
+                center_y:
                     DISTRIBUTION:
                         NAME: normal
                         PARAMETERS:
